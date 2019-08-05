@@ -4,7 +4,7 @@ import pt from 'date-fns/locale/pt';
 import User from '../models/User';
 import File from '../models/File';
 import Appointment from '../models/Appointment';
-import Notification from '../schemas/notification';
+import Notification from '../schemas/Notification';
 
 class AppointmentController {
   async index(req, res) {
@@ -55,6 +55,12 @@ class AppointmentController {
       return res
         .status(401)
         .json({ error: 'Você só pode criar agendamento com prestadores' });
+    }
+
+    if ((checkIsProvider.id = req.userId)) {
+      return res
+        .status(401)
+        .json({ error: 'Você não pode criar um agendamento com você mesmo' });
     }
 
     const hourStart = startOfHour(parseISO(date));
