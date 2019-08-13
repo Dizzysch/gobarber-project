@@ -143,7 +143,7 @@ class AppointmentController {
       template: 'cancellation',
       context: {
         provider: appointment.provider.nome,
-        user: appointment.user.name,
+        user: appointment.user.nome,
         date: format(appointment.date, "'dia' dd 'de' MMMM', às ' H:mm'h'", {
           locale: pt,
         }),
